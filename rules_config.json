@@ -1,0 +1,102 @@
+{
+  "base_rules": [
+    {
+      "name": "敏感信息搜索",
+      "template": "site:{domain} ( \"默认密码\" OR \"学号\" OR \"工号\")"
+    },
+    {
+      "name": "后台接口和敏感信息探测",
+      "template": "site:{domain} (inurl:login OR inurl:admin OR inurl:index OR inurl:登录) OR (inurl:config | inurl:env | inurl:setting | inurl:backup | inurl:admin | inurl:php)"
+    },
+    {
+      "name": "查找暴露的特殊文件",
+      "template": "site:{domain} filetype:txt OR filetype:xls OR filetype:xlsx OR filetype:doc OR filetype:docx OR filetype:pdf"
+    },
+    {
+      "name": "已公开的 XSS 和重定向漏洞",
+      "template": "site:openbugbounty.org inurl:reports intext:{domain}"
+    },
+    {
+      "name": "常见的敏感文件扩展",
+      "template": "site:{domain} ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess"
+    },
+    {
+      "name": "XSS 漏洞倾向参数",
+      "template": "inurl:q= | inurl:s= | inurl:search= | inurl:query= | inurl:keyword= | inurl:lang= inurl:& site:{domain}"
+    },
+    {
+      "name": "重定向漏洞倾向参数",
+      "template": "inurl:url= | inurl:return= | inurl:next= | inurl:redirect= | inurl:redir= | inurl:ret= | inurl:r2= | inurl:page= inurl:& inurl:http site:{domain}"
+    },
+    {
+      "name": "SQL 注入倾向参数",
+      "template": "inurl:id= | inurl:pid= | inurl:category= | inurl:cat= | inurl:action= | inurl:sid= | inurl:dir= inurl:& site:{domain}"
+    },
+    {
+      "name": "SSRF 漏洞倾向参数",
+      "template": "inurl:http | inurl:url= | inurl:path= | inurl:dest= | inurl:html= | inurl:data= | inurl:domain= | inurl:page= inurl:& site:{domain}"
+    },
+    {
+      "name": "本地文件包含（LFI）倾向参数",
+      "template": "inurl:include | inurl:dir | inurl:detail= | inurl:file= | inurl:folder= | inurl:inc= | inurl:locate= | inurl:doc= | inurl:conf= inurl:& site:{domain}"
+    },
+    {
+      "name": "远程命令执行（RCE）倾向参数",
+      "template": "inurl:cmd | inurl:exec= | inurl:query= | inurl:code= | inurl:do= | inurl:run= | inurl:read= | inurl:ping= inurl:& site:{domain}"
+    },
+    {
+      "name": "敏感参数",
+      "template": "inurl:email= | inurl:phone= | inurl:password= | inurl:secret= inurl:& site:{domain}"
+    },
+    {
+      "name": "API 文档",
+      "template": "inurl:apidocs | inurl:api-docs | inurl:swagger | inurl:api-explorer site:{domain}"
+    },
+    {
+      "name": "代码泄露",
+      "template": "site:pastebin.com {domain}"
+    },
+    {
+      "name": "云存储",
+      "template": "site:s3.amazonaws.com {domain}"
+    },
+    {
+      "name": "JFrog Artifactory",
+      "template": "site:jfrog.io {domain}"
+    },
+    {
+      "name": "Firebase",
+      "template": "site:firebaseio.com {domain}"
+    },
+    {
+      "name": "文件上传端点",
+      "template": "site:{domain} \"choose file\""
+    },
+    {
+      "name": "漏洞赏金和漏洞披露程序",
+      "template": "\"submit vulnerability report\" | \"powered by bugcrowd\" | \"powered by hackerone\" site:*/security.txt \"bounty\""
+    },
+    {
+      "name": "暴露的 Apache 服务器状态",
+      "template": "site:*/server-status apache"
+    },
+    {
+      "name": "WordPress",
+      "template": "inurl:/wp-admin/admin-ajax.php"
+    },
+    {
+      "name": "前台登录(教育网)",
+      "template": "site:edu.cn intext:管理|后台|登陆|用户名|密码|验证码|系统|帐号|手册|admin|login|sys|managetem|password|username"
+    },
+    {
+      "name": "通用前台登录",
+      "template": "site:{domain} intext:管理|后台|登陆|用户名|密码|验证码|系统|帐号|admin|login|password|username"
+    }
+  ],
+  "custom_rules": [
+    {
+      "name": "Test001",
+      "template": "site: wuhulahu2.top {domain}"
+    }
+  ]
+}
