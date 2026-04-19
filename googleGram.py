@@ -55,7 +55,7 @@ def add_rule_ui():
 
 # 界面初始化
 root = tk.Tk()
-root.title("谷歌语法生成工具")
+root.title("谷歌语法生成工具 by Wuhulahu2")
 root.geometry("700x750")
 root.minsize(500, 500)
 FONT = ("微软雅黑", 11)
